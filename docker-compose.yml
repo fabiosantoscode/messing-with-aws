@@ -1,6 +1,6 @@
 
 benfica:
-    build: benfica
+    image: fabiosantoscode/benfica
     environment:
         - ENVIRONMENT_VARIABLE=true
     ports:
