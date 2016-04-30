@@ -1,6 +1,11 @@
 
 build:
 	docker build --tag fabiosantoscode/benfica:latest benfica
+	docker build --tag fabiosantoscode/proxy:latest proxy
+
+push:
+	docker push fabiosantoscode/benfica:latest
+	docker push fabiosantoscode/proxy:latest
 
 run:
 	docker run --rm -i --name=benfica_makefile_devel --publish=8080:8080 fabiosantoscode/benfica:latest

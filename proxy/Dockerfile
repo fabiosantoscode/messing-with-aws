@@ -7,7 +7,7 @@ WORKDIR /code
 
 RUN mkdir -p /code
 
-RUN npm install node-http-proxy
+RUN npm install http-proxy
 
 COPY . /code
 

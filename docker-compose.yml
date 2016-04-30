@@ -6,3 +6,11 @@ benfica:
     ports:
         - "8080:8080"
 
+
+proxy:
+    image: fabiosantoscode/proxy
+    links:
+        - benfica
+    ports:
+        - "8081:8081"
+
