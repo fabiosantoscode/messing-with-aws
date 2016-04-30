@@ -5,15 +5,9 @@ EXPOSE 8081
 
 WORKDIR /code
 
-RUN mkdir -p /code
-
-RUN npm install http-proxy
+RUN mkdir -p /code && npm install http-proxy
 
 COPY . /code
-
-RUN echo "hello docker"
-
-RUN cat /code/index.js
 
 CMD node /code/index.js
 

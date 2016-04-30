@@ -1,16 +1,18 @@
 
 benfica:
-    image: fabiosantoscode/benfica
+    image: fabiosantoscode/benfica:latest
+    mem_limit: 50000000
     environment:
-        - ENVIRONMENT_VARIABLE=true
-    ports:
-        - "8080:8080"
+        - ENVIRONMENT_VARIABLE=I am an environment variable! Lol!
+    #ports:
+    #    - "8080:8080"
 
 
 proxy:
-    image: fabiosantoscode/proxy
+    image: fabiosantoscode/proxy:latest
+    mem_limit: 100000000
     links:
         - benfica
     ports:
-        - "8081:8081"
+        - "8080:8080"
 

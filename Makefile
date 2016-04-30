@@ -7,13 +7,23 @@ push:
 	docker push fabiosantoscode/benfica:latest
 	docker push fabiosantoscode/proxy:latest
 
-run:
-	docker run --rm -i --name=benfica_makefile_devel --publish=8080:8080 fabiosantoscode/benfica:latest
+deploy: build push
+	ecs-cli compose service up --deployment-min-healthy-percent 0
+
+undeploy:
+	ecs-cli compose service down
+
+run: build
+	docker-compose up
 
 stop:
-	docker ps --filter=name=benfica_makefile_devel -aq | \
+	docker ps --filter=name=benfica -aq | \
+		xargs --no-run-if-empty docker stop --time=0
+	docker ps --filter=name=proxy -aq | \
 		xargs --no-run-if-empty docker stop --time=0
 
 watch:
-	./node_modules/.bin/nodemon --exec "make stop && make build && make run"
+	./node_modules/.bin/nodemon \
+		--exec "make stop && make build && make run" \
+		--ext js,json,
 
